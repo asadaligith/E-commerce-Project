@@ -19,44 +19,65 @@ app.get('/products',(req , resp)=>{
 })
 
 
-app.post('/add-product', (req , resp)=>{
-    const {name, price} = req.body;
+app.post('/products', (req , resp)=>{
+    try {
+        const {name, price, category} = req.body;
 
-    const newProduct = {id: products.length + 1, name, price};
-    products.push(newProduct);
-    resp.status(201).json({product: newProduct});
+        // Validation
+        if (!name || !price) {
+            return resp.status(400).json({message: "Name and price are required"});
+        }
+        if (price < 0) {
+            return resp.status(400).json({message: "Price cannot be negative"});
+        }
+
+        const newProduct = {id: products.length + 1, name, price, category: category || "Uncategorized"};
+        products.push(newProduct);
+        resp.status(201).json({product: newProduct});
+    } catch (error) {
+        resp.status(500).json({message: "Error adding product", error: error.message});
+    }
 });
 
 app.put('/products/:id', (req , resp)=>{
-    const productId = Number(req.params.id);
-    
-    console.log(req.body.id);
-    console.log(req.body.name);
-    console.log(req.body.price);
+    try {
+        const productId = Number(req.params.id);
+        
+        const product = products.find((product)=> product.id === productId);
 
-    const product = products.find((product)=> product.id === productId);
+        if (!product){
+            return resp.status(404).json({message: "Product not found"});
+        }
 
-    if (!product){
-        return resp.status(404).json({message: "Product not found"});
+        // Validation
+        if (req.body.price && req.body.price < 0) {
+            return resp.status(400).json({message: "Price cannot be negative"});
+        }
+
+        product.name = req.body.name || product.name;
+        product.price = req.body.price || product.price;
+        product.category = req.body.category || product.category;
+
+        resp.json({product: product});
+    } catch (error) {
+        resp.status(500).json({message: "Error updating product", error: error.message});
     }
-
-    product.name = req.body.name || product.name;
-    product.price = req.body.price || product.price;
-
-    resp.json({product: product});
 })
 
 app.delete('/products/:id', (req, resp)=>{
-    const productId = Number(req.params.id);
-    const product = products.find((product)=> product.id === productId);
+    try {
+        const productId = Number(req.params.id);
+        const productIndex = products.findIndex((product)=> product.id === productId);
 
-    if (!product){
-        return resp.status(404).json({message: "Product not found"});
+        if (productIndex === -1){
+            return resp.status(404).json({message: "Product not found"});
+        }
+
+        const deletedProduct = products.splice(productIndex, 1);
+        resp.json({message: "Product deleted successfully", product: deletedProduct[0]});
+    } catch (error) {
+        resp.status(500).json({message: "Error deleting product", error: error.message});
     }
-
-    products = products.filter((product)=> product.id !== productId);
-    resp.json({message: "Product deleted successfully"});
-
 })
 
 
