@@ -226,7 +226,7 @@ export default function Home() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-black mb-2">
              E-Commerce CRUD Dashboard
           </h1>
           <p className="text-gray-600">Manage your products efficiently</p>
@@ -256,7 +256,7 @@ export default function Home() {
 
             {/* Price */}
             <div>
-              <label className="block text-sm font-medium text-black-900 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Price (PKR) *
               </label>
               <input
@@ -273,7 +273,7 @@ export default function Home() {
 
             {/* Category */}
             <div>
-              <label className="block text-sm font-medium text-black-900 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Category
               </label>
               <input
