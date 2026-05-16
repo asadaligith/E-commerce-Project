@@ -241,7 +241,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Product Name */}
             <div>
-              <label className="block text-sm font-medium text-black-900 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Product Name *
               </label>
               <input
@@ -250,7 +250,7 @@ export default function Home() {
                 placeholder="Enter product name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
               />
             </div>
 
@@ -267,7 +267,7 @@ export default function Home() {
                 onChange={handleChange}
                 min="0"
                 step="0.01"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
               />
             </div>
 
@@ -282,7 +282,7 @@ export default function Home() {
                 placeholder="Enter category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
               />
             </div>
 
