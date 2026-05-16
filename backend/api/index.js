@@ -11,6 +11,7 @@ app.use(cors({
     origin: [
         'http://localhost:3000', 
         'http://localhost:4000', 
+        'https://e-commerce-project-frontend-nu.vercel.app',
         'https://e-commerce-project-gv8t.vercel.app',
         'https://e-commerce-frontend-navy-five.vercel.app',
         'https://e-commerce-project-seven-mu.vercel.app'

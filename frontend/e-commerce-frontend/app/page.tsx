@@ -31,7 +31,7 @@ export default function Home() {
   const [editingId, setEditingId] = useState<number | null>(null);
 
   // Use environment variable with fallback
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://e-commerce-project-o21a.vercel.app';
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://e-commerce-project-backend-tau.vercel.app';
   const API = `${apiBaseUrl}/products`;
 
   // Debug logging
