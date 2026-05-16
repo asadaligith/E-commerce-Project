@@ -8,7 +8,7 @@ app.use(express.json());
 
 // CORS configuration for production
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://e-commerce-project-seven-mu.vercel.app'],
+    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://e-commerce-project-gv8t.vercel.app', 'https://e-commerce-project-seven-mu.vercel.app'],
     credentials: true
 }));
 
