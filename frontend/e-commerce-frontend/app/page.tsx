@@ -30,7 +30,15 @@ export default function Home() {
 
   const [editingId, setEditingId] = useState<number | null>(null);
 
-  const API = `${process.env.NEXT_PUBLIC_API_URL}/products`;
+  // Use environment variable with fallback
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://e-commerce-project-o21a.vercel.app';
+  const API = `${apiBaseUrl}/products`;
+
+  // Debug logging
+  useEffect(() => {
+    console.log('API Base URL:', apiBaseUrl);
+    console.log('Full API URL:', API);
+  }, [API, apiBaseUrl]);
 
   // Toast notification
   const addToast = (message: string, type: "success" | "error" | "info" = "info") => {
