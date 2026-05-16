@@ -241,7 +241,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Product Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-black-900 mb-2">
                 Product Name *
               </label>
               <input
@@ -256,7 +256,7 @@ export default function Home() {
 
             {/* Price */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-black-900 mb-2">
                 Price (PKR) *
               </label>
               <input
@@ -273,7 +273,7 @@ export default function Home() {
 
             {/* Category */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-2">
+              <label className="block text-sm font-medium text-black-900 mb-2">
                 Category
               </label>
               <input
