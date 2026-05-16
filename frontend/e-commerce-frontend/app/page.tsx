@@ -30,7 +30,7 @@ export default function Home() {
 
   const [editingId, setEditingId] = useState<number | null>(null);
 
-  const API = "http://localhost:4000/products";
+  const API = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
   // Toast notification
   const addToast = (message: string, type: "success" | "error" | "info" = "info") => {
