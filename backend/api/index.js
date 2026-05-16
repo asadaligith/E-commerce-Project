@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
-const {config} = require('dotenv');
 
 const app = express();
 app.use(express.json());
@@ -13,11 +12,8 @@ app.use(cors({
     credentials: true
 }));
 
-config();
-const port = process.env.PORT || 4000;
-
-// Path to products.json
-const productsFilePath = path.join(__dirname, 'products.json');
+// Path to products.json (one directory up from api/)
+const productsFilePath = path.join(__dirname, '..', 'products.json');
 
 console.log('Products file path:', productsFilePath);
 console.log('File exists:', fs.existsSync(productsFilePath));
@@ -53,18 +49,17 @@ const writeProducts = (products) => {
 // Initialize products from file
 let products = readProducts();
 
-app.get('/',(req , resp)=>{
+app.get('/', (req, resp) => {
     resp.send("Hello; this is my first api creation")
 })
 
-app.get('/products',(req , resp)=>{
+app.get('/products', (req, resp) => {
     // Always read fresh data from file
     products = readProducts();
-    resp.json({products:products})
+    resp.json({products: products})
 })
 
-
-app.post('/products', (req , resp)=>{
+app.post('/products', (req, resp) => {
     try {
         const {name, price, category} = req.body;
 
@@ -90,15 +85,15 @@ app.post('/products', (req , resp)=>{
     }
 });
 
-app.put('/products/:id', (req , resp)=>{
+app.put('/products/:id', (req, resp) => {
     try {
         const productId = Number(req.params.id);
         
         // Read fresh data
         products = readProducts();
-        const product = products.find((product)=> product.id === productId);
+        const product = products.find((product) => product.id === productId);
 
-        if (!product){
+        if (!product) {
             return resp.status(404).json({message: "Product not found"});
         }
 
@@ -120,15 +115,15 @@ app.put('/products/:id', (req , resp)=>{
     }
 })
 
-app.delete('/products/:id', (req, resp)=>{
+app.delete('/products/:id', (req, resp) => {
     try {
         const productId = Number(req.params.id);
         
         // Read fresh data
         products = readProducts();
-        const productIndex = products.findIndex((product)=> product.id === productId);
+        const productIndex = products.findIndex((product) => product.id === productId);
 
-        if (productIndex === -1){
+        if (productIndex === -1) {
             return resp.status(404).json({message: "Product not found"});
         }
 
@@ -143,12 +138,4 @@ app.delete('/products/:id', (req, resp)=>{
     }
 })
 
-// For Vercel serverless deployment
-if (process.env.VERCEL) {
-    module.exports = app;
-} else {
-    // For local development
-    app.listen(port , ()=>{
-        console.log(`Server is running on port ${port}`)
-    })
-}
+module.exports = app;
